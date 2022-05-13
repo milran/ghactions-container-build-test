@@ -31,3 +31,5 @@ jobs:
           context: some-container
           push: true
           tags: milran/some-container:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
