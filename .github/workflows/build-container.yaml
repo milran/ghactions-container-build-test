@@ -39,6 +39,6 @@ jobs:
           push: true
           tags: |
             milran/some-container:latest
-            ghcr.io/milran/ghactions-container-build-test/some-container:latest
+            ghcr.io/milran/some-container:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
