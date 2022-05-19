@@ -25,13 +25,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
-        name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
@@ -39,6 +32,5 @@ jobs:
           push: true
           tags: |
             milran/some-container:latest
-            ghcr.io/milran/some-container:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
