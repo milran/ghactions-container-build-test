@@ -13,6 +13,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: milran/some-container
+          tags: |
+            type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=sha
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       -
@@ -30,7 +39,6 @@ jobs:
         with:
           context: some-container
           push: true
-          tags: |
-            milran/some-container:latest
+          tag: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
