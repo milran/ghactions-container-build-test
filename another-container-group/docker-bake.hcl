@@ -20,5 +20,5 @@ target "linux" {
 
 target "nanoserver" {
   inherits = ["base", "docker-metadata-action-nanoserver"]
-  args = { VARIANT = "nanoserver" }
+  args = { VARIANT = "linux" }
 }
