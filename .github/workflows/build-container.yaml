@@ -19,8 +19,9 @@ jobs:
         with:
           images: milran/some-container
           tags: |
-            type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=sha
+            type=schedule,pattern={{date 'YYYYMMDD'}},prefix=prefix-
+            type=sha,prefix=prefix-
+            type=raw,value=latest,enable={{is_default_branch}},prefix=prefix-
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -39,6 +40,15 @@ jobs:
         with:
           context: some-container
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: aaa-${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: some-container
+          push: true
+          tags: another-${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
