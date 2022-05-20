@@ -15,12 +15,10 @@ target "base" {
 
 target "linux" {
   inherits = ["base", "docker-metadata-action-linux"]
-  target = "linux"
   args = { VARIANT = "linux" }
 }
 
 target "nanoserver" {
   inherits = ["base", "docker-metadata-action-nanoserver"]
-  target = "nanoserver"
   args = { VARIANT = "nanoserver" }
 }
