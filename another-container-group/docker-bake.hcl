@@ -9,7 +9,7 @@ target "docker-metadata-action-nanoserver" {}
 // This sets the platforms and is further extended by GitHub Actions to set the
 // output and the cache locations
 target "base" {
-  context = "./"
+  context = "another-container-group"
   dockerfile = "Dockerfile"
 }
 
